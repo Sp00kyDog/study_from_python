@@ -42,6 +42,21 @@ class twitter:
     _auth.set_access_token(_ACCESS_TOKEN, _ACCESS_SECRET)
     _api = tweepy.API(_auth)
 
+    if(_CONSUMER_KEY    == 'xxxxx' or
+       _CONSUMER_SECRET == 'xxxxx' or
+       _ACCESS_TOKEN    == 'xxxxx' or
+       _ACCESS_SECRET   == 'xxxxx'):
+
+        print('Consumer Key等が設定されていないようです')
+        print('詳細はこちら -> '
+              'http://statsbeginner.hatenablog.com/'
+              'entry/2015/10/21/131717')
+
+        _CONSUMER_KEY = input('Consumer Keyを入力してください :')
+        _CONSUMER_SECRET = input('Consumer Secretを入力してださい :')
+        _ACCESS_TOKEN = input('Access Tokenを入力してください :')
+        _ACCESS_SECRET = input('Access Token Secretを入力してください :')
+
     def get_tl(self):
         try:
             return self._api.home_timeline()[0].text

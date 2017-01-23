@@ -2,6 +2,7 @@ import tkinter as tk
 import tweepy
 
 class Application(tk.Frame):
+
     def __init__(self, master=None):
         super().__init__(master)
         self.pack()
@@ -32,8 +33,9 @@ class Application(tk.Frame):
 
 
 class twitter:
+
     _CONSUMER_KEY = 'xxxxx'
-    _CONSUMER_SECRET = 'xxxxx''
+    _CONSUMER_SECRET = 'xxxxx'
     _auth = tweepy.OAuthHandler(_CONSUMER_KEY, _CONSUMER_SECRET)
     _ACCESS_TOKEN = 'xxxxx'
     _ACCESS_SECRET = 'xxxxx'
@@ -41,7 +43,12 @@ class twitter:
     _api = tweepy.API(_auth)
 
     def get_tl(self):
-         return self._api.home_timeline()[0].text
+        try:
+            return self._api.home_timeline()[0].text
+
+        except Exception as err:
+            #return ('Error:Something happened(なにかがおきました)')
+            return ('エラー:', err.args)
 
 root = tk.Tk()
 app = Application(master=root)

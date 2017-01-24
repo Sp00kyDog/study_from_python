@@ -35,13 +35,6 @@ class Application(tk.Frame):
 
 class twitter:
 
-    """    
-    _CONSUMER_KEY    = 'xxxxx'
-    _CONSUMER_SECRET = 'xxxxx'
-    _ACCESS_TOKEN    = 'xxxxx'
-    _ACCESS_SECRET   = 'xxxxx'
-    """
-
     try:
         f = open('token.txt')
         token = f.readlines()

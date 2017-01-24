@@ -1,3 +1,4 @@
+import sys
 import tkinter as tk
 import tweepy
 
@@ -34,16 +35,23 @@ class Application(tk.Frame):
 
 class twitter:
 
+    
     _CONSUMER_KEY    = 'xxxxx'
     _CONSUMER_SECRET = 'xxxxx'
     _ACCESS_TOKEN    = 'xxxxx'
     _ACCESS_SECRET   = 'xxxxx'
 
-    if(_CONSUMER_KEY    == 'xxxxx' or
-       _CONSUMER_SECRET == 'xxxxx' or
-       _ACCESS_TOKEN    == 'xxxxx' or
-       _ACCESS_SECRET   == 'xxxxx'):
+    try:
+        f = open('token.txt')
+        token = f.readlines()
+        f.close()
 
+        _CONSUMER_KEY    = token[0].rstrip('\r\n')
+        _CONSUMER_SECRET = token[1].rstrip('\r\n')
+        _ACCESS_TOKEN    = token[2].rstrip('\r\n')
+        _ACCESS_SECRET   = token[3].rstrip('\r\n')
+
+    except:
         print('Consumer Key等が設定されていないようです')
         print('詳細はこちら -> '
               'http://statsbeginner.hatenablog.com/'
@@ -69,5 +77,6 @@ class twitter:
             return ('エラー:{0}'.format(err.args[0][0]['message']))
 
 root = tk.Tk()
+root.title(sys.argv) #アプリケーションのタイトル
 app = Application(master=root)
 app.mainloop()

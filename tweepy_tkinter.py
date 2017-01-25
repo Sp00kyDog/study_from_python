@@ -23,10 +23,8 @@ class Application(tk.Frame):
         label = tk.Label(root, textvariable = buff)
         label.pack()
 
-
-
 class get_twitter_api:
-
+    
     _CONSUMER_KEY    = 'xxxxx'
     _CONSUMER_SECRET = 'xxxxx'
     _ACCESS_TOKEN    = 'xxxxx'

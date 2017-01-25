@@ -10,32 +10,23 @@ class Application(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-#        self.hi_there = tk.Button(self)
-#        self.hi_there["text"] = "Get Tweet!"
-#        self.hi_there["command"] = self.test
-#        self.hi_there.pack(side="top")
-        self.hi_there = tk.Button(self, text="Get Tweet",command=self.test)
+        self.hi_there = tk.Button(self, text="Get Tweet",command=self.get_twitter_tl)
         self.hi_there.pack(side="top")
 
         self.quit = tk.Button(self, text="QUIT", fg="red",command=root.destroy)
         self.quit.pack(side="bottom")
 
-    def say_hi(self):
-        TL = twitter()
-        print(TL.get_tl())
-
-    def test(self):
-        TL = twitter()
+    def get_twitter_tl(self):
+        TL = get_twitter_api()
         buff = tk.StringVar()
         buff.set(TL.get_tl())
         label = tk.Label(root, textvariable = buff)
         label.pack()
-        
 
 
-class twitter:
 
-    
+class get_twitter_api:
+
     _CONSUMER_KEY    = 'xxxxx'
     _CONSUMER_SECRET = 'xxxxx'
     _ACCESS_TOKEN    = 'xxxxx'
@@ -66,7 +57,6 @@ class twitter:
     _auth.set_access_token(_ACCESS_TOKEN, _ACCESS_SECRET)
 
     _api = tweepy.API(_auth)
-
 
     def get_tl(self):
         try:

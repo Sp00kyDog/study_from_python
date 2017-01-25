@@ -60,18 +60,18 @@ if __name__ == '__main__':
 
     # ボタンを作成
     hi_there = QPushButton('Get Tweet', window) 
-    quit     = QPushButton('QUIT', window)
+    end      = QPushButton('QUIT', window)
     send     = QPushButton('Post Tweet', window)
     
     # 入力フォームの作成
     twinput  = QLineEdit(window)
 
     # ボタンのスタイルシートを設定
-    quit.setStyleSheet('color:red')
+    end.setStyleSheet('color:red')
 
     # スロットを設定
     hi_there.clicked.connect(getTweet)
-    quit.clicked.connect(app.quit)
+    end.clicked.connect(app.quit)
     send.clicked.connect(post_tweet)
 
     # レイアウト作成
@@ -83,7 +83,7 @@ if __name__ == '__main__':
     Xlayout1.addWidget(twinput)
     Xlayout1.addWidget(send)
     Xlayout2.addWidget(hi_there)
-    Xlayout2.addWidget(quit)
+    Xlayout2.addWidget(end)
 
     # 縦レイアウトに横レイアウト*2を追加
     Ylayout.addLayout(Xlayout1)

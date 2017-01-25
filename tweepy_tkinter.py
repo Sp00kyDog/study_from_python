@@ -11,10 +11,16 @@ class Application(tk.Frame):
 
     def create_widgets(self):
         self.hi_there = tk.Button(self, text="Get Tweet",command=self.get_twitter_tl)
-        self.hi_there.pack(side="top")
+        self.hi_there.grid(column=0,row=1)
 
         self.quit = tk.Button(self, text="QUIT", fg="red",command=root.destroy)
-        self.quit.pack(side="bottom")
+        self.quit.grid(column=1,row=1)
+
+        self.tweet_form = tk.Entry(self)
+        self.tweet_form.grid(column=0,row=0)
+
+        self.hi_there = tk.Button(self, text="Post Tweet",command=self.post_tweet)
+        self.hi_there.grid(column=1,row=0)
 
     def get_twitter_tl(self):
         TL = get_twitter_api()
@@ -23,8 +29,13 @@ class Application(tk.Frame):
         label = tk.Label(root, textvariable = buff)
         label.pack()
 
+    def post_tweet(self):
+        get_value = self.tweet_form.get()
+        get_api = get_twitter_api()
+        get_api.post(get_value)
+
 class get_twitter_api:
-    
+
     _CONSUMER_KEY    = 'xxxxx'
     _CONSUMER_SECRET = 'xxxxx'
     _ACCESS_TOKEN    = 'xxxxx'
@@ -39,7 +50,7 @@ class get_twitter_api:
         _CONSUMER_SECRET = token[1].rstrip('\r\n')
         _ACCESS_TOKEN    = token[2].rstrip('\r\n')
         _ACCESS_SECRET   = token[3].rstrip('\r\n')
-
+        
     except:
         print('Consumer Key等が設定されていないようです')
         print('詳細はこちら -> '
@@ -63,6 +74,9 @@ class get_twitter_api:
         except Exception as err:
             #return ('Error:Something happened(なにかがおきました)')
             return ('エラー:{0}'.format(err.args[0][0]['message']))
+
+    def post(self,tweet):
+        self._api.update_status(tweet)
 
 root = tk.Tk()
 root.title(sys.argv) #アプリケーションのタイトル

@@ -42,12 +42,12 @@ if __name__ == '__main__':
 
     def getTweet():
         try:
-            TLtweet = _api.home_timeline()[0].text
+            tweet = _api.home_timeline()[0].text
 
         except Exception as err:
-            TLtweet = 'エラー:{0}'.format(err.args[0][0]['message'])
+            tweet = 'エラー:{0}'.format(err.args[0][0]['message'])
 
-        label = QLabel(TLtweet, window)
+        label = QLabel(tweet, window)
         label.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
         Ylayout.addWidget(label)
 
@@ -61,7 +61,7 @@ if __name__ == '__main__':
     # ボタンを作成
     hi_there = QPushButton('Get Tweet', window) 
     quit     = QPushButton('QUIT', window)
-    tweet     = QPushButton('Post Tweet', window)
+    send     = QPushButton('Post Tweet', window)
     
     # 入力フォームの作成
     twinput  = QLineEdit(window)
@@ -72,7 +72,7 @@ if __name__ == '__main__':
     # スロットを設定
     hi_there.clicked.connect(getTweet)
     quit.clicked.connect(app.quit)
-    tweet.clicked.connect(post_tweet)
+    send.clicked.connect(post_tweet)
 
     # レイアウト作成
     Xlayout1 = QHBoxLayout()
@@ -81,7 +81,7 @@ if __name__ == '__main__':
 
     # レイアウトにボタンを追加
     Xlayout1.addWidget(twinput)
-    Xlayout1.addWidget(tweet)
+    Xlayout1.addWidget(send)
     Xlayout2.addWidget(hi_there)
     Xlayout2.addWidget(quit)
 

@@ -40,7 +40,7 @@ if __name__ == '__main__':
 
     _api = tweepy.API(_auth)
 
-    def hello():
+    def getTweet():
         try:
             TLtweet = _api.home_timeline()[0].text
 
@@ -70,7 +70,7 @@ if __name__ == '__main__':
     quit.setStyleSheet('color:red')
 
     # スロットを設定
-    hi_there.clicked.connect(hello)
+    hi_there.clicked.connect(getTweet)
     quit.clicked.connect(app.quit)
     tweet.clicked.connect(post_tweet)
 
@@ -85,6 +85,7 @@ if __name__ == '__main__':
     Xlayout2.addWidget(hi_there)
     Xlayout2.addWidget(quit)
 
+    # 縦レイアウトに横レイアウト*2を追加
     Ylayout.addLayout(Xlayout1)
     Ylayout.addLayout(Xlayout2)
 

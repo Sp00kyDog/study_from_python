@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton,
                              QHBoxLayout, QVBoxLayout, QLabel,
                              QLineEdit)
 from PyQt5.QtCore import Qt
+from tweet_api import*
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
@@ -14,6 +15,8 @@ if __name__ == '__main__':
     window = QWidget()
 
     tw_api = get_twitter_api()
+
+    print(tw_api.get_tl())
     # ボタンを作成
     hi_there = QPushButton('Get Tweet', window)
     end      = QPushButton('QUIT', window)

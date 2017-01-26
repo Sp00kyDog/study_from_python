@@ -1,7 +1,10 @@
 #! /usr/bin/python3
 # -*- coding: utf-8 -*-
 # PyQt5でtweepy_tkinterを実装します
+<<<<<<< HEAD
 # Forkしないてすと
+=======
+>>>>>>> 98f8f9149671d854e90939a3be1e39e1eaac170b
 
 import sys
 from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton,

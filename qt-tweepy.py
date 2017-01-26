@@ -16,7 +16,15 @@ if __name__ == '__main__':
 
     tw_api = get_twitter_api()
 
-    print(tw_api.get_tl())
+    def getTweet():
+        label = QLabel(tw_api.get_tl(), window)
+        label.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
+        Ylayout.addWidget(label)
+
+    def post_tweet():
+        get_value = twinput.text()
+        tw_api.post(get_value)
+
     # ボタンを作成
     hi_there = QPushButton('Get Tweet', window)
     end      = QPushButton('QUIT', window)
@@ -29,9 +37,9 @@ if __name__ == '__main__':
     end.setStyleSheet('color:red')
 
     # スロットを設定
-    hi_there.clicked.connect(tw_api.get_tl())
+    hi_there.clicked.connect(getTweet)
     end.clicked.connect(app.quit)
-    send.clicked.connect(tw_api.post())
+    send.clicked.connect(post_tweet)
 
     # レイアウト作成
     Xlayout1 = QHBoxLayout()
@@ -50,7 +58,6 @@ if __name__ == '__main__':
 
     # レイアウトをセット
     window.setLayout(Ylayout)
-
 
     window.show()
     sys.exit(app.exec_())

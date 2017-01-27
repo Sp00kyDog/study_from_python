@@ -23,8 +23,25 @@ if __name__ == '__main__':
         Ylayout.addWidget(label)
 
     def post_tweet():
-        get_value = twinput.text()
-        tw_api.post(get_value)
+        try:
+            get_value = twinput.text()
+
+            if(len(get_value) > 140):
+                strCnt = '文字数が140を超えているのでTweetできません'
+                label = QLabel(strCnt, window)
+                label.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
+                Ylayout.addWidget(label)
+
+            else:
+                tw_api.post(get_value)
+                twinput.clear()
+
+        except Exception as err:
+            errMess = 'Tweetエラー:{0}'.format(err.args[0][0]['message'])
+            label = QLabel(errMess, window)
+            label.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
+            Ylayout.addWidget(label)
+
 
     # ボタンを作成
     hi_there = QPushButton('Get Tweet', window)
